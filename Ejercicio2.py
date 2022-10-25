@@ -13,12 +13,13 @@ import random
 
 numero= random.randint(1,100)
 num= 0
-contador
-while (num!= numero):
-    num= (int)(input("Dime un número"))
+contador= 1
+
+while (num!= numero) and (contador<10):
     if (num<numero):
         print("El número es mayor")
-    else:
-        print("El número es mayor")
-
-print
+    if (num>numero):
+        print("El número es menor")
+    contador= contador+1
+    num= (int)(input("Dime un número \n"))
+print("Intentos:", contador)
