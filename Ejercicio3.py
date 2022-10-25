@@ -3,7 +3,7 @@ Ejercicio 3. Algoritmo que pida números hasta que se introduzca un cero. Debe i
 '''
 num= 0
 vNum= []
-num= (int)(input("Dime un número"))
 while (num!=0):
+    num= (int)(input("Dime un número"))
     vNum.append(num)
     print(sum.vNum)
