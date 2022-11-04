@@ -17,6 +17,7 @@ while inferior>superior:
 
 num= (int)(input("Dime un número \n"))
 while (num!=0):
+    num= 1
     vNumeros=[]
     vNumeros.append(num)
     num= (int)(input("Dime un número \n"))
