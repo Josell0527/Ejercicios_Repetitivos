@@ -4,14 +4,14 @@ Una persona adquirió un producto para pagar en 20 meses. El primer mes pagó
 para determinar cuánto debe pagar mensualmente y el total de
 lo que pagó después de los 20 meses.'''
 
-producto= 10
+producto= 5
 contador = 0
 num= 0
 suma= 0
 
 for num in range(0,20):
     contador= contador+1
-    print("El", contador, "mes, paga:", producto, "€")
     producto*=2
+    print("El", contador, "mes, paga:", producto, "€")
     suma= suma+producto
 print("Total:",suma, "€")

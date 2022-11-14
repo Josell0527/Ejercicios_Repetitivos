@@ -5,10 +5,24 @@ Realice un algoritmo para determinar el sueldo semanal de N trabajadores y
 además calcule cuánto pagó la empresa por los N empleados.'''
 
 horas= 0
-dias= 0
 trabajadores= (int)(input("Dime el número de trabajadores que tiene la empresa: \n"))
+num= 0
+semanas=4
+horastotal= 0
+sueldosemanal= 0
+gastototal= 0
+eurohora= (int)(input("Dime el salario de la hora: \n"))
 
-for num in range(1,7):
-    horas= int(input("Dime las horas trabajadas"))
-    dias= int(input("Dime los días trabajados"))
-    sueldo= trabajadores
+for tra in range (1,trabajadores+1):
+    dias= int(input(f"Dime los días trabajados del empleado {tra}: \n"))
+    horastotal= 0
+    for num in range (1,dias+1):
+        horastrabajadas= int(input(f"Dime las horas trabajadas el día {num}: \n"))
+        horastotal += horastrabajadas
+
+
+    sueldosemanal = horastotal*eurohora
+    gastototal += sueldosemanal
+
+print("Total semana:", sueldosemanal)
+print("Total de todos los trabajadores:", (gastototal))
