@@ -10,7 +10,7 @@ for tra in range (1, trabajadores+1):
     horas= int(input(f"Dime cuántas horas trabajó el día {tra}: \n"))
     horastotal += horas
 
-print(Sueldo t)
+print(horastotal*eurohora)
 
     
         
