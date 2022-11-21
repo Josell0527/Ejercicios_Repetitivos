@@ -1,6 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 
+def saludar():
+    texto= campoTexto.get()
+    textoLabel.set(texto)
+
 #generar la ventana
 ventana = Tk()
 ventana.title("Primer ejercicio")
@@ -12,10 +16,19 @@ ventana.config(background="Turquoise")
 frm = ttk.Frame(ventana).pack()
 
 #Componentes Label y Button
-LabelTexto= ttk.Label(frm, text="Hola Mundo")
+textoLabel = StringVar()
+textoLabel.set("Hola Tkinter")
+LabelTexto= ttk.Label(frm, textvariable=textoLabel)
 LabelTexto.config(background="Ivory", border=2, font=("Times New Roman",15))
 LabelTexto.pack()
 
+#Componente cuadro de texto
+campoTexto= ttk.Entry(frm)
+campoTexto.pack()
+
+ttk.Button(frm, text="Saludo", command=saludar).pack()
 ttk.Button(frm, text="SALIR", command=ventana.destroy).pack()
+
+
 
 ventana.mainloop()
