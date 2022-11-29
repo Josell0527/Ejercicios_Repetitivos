@@ -9,3 +9,5 @@ while (num!=0):
     suma= suma+num
     num= (int)(input("Dime un número: \n"))
 print("La suma total es:", suma, "y la media", (suma/contador))
+
+#Muy bien!
