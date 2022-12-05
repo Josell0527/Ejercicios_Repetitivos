@@ -25,9 +25,15 @@ def guardarDatos(): #EL GET() DEVUELVE LO QUE HAYAS PUESTO
 
 ventana = Tk()
 ventana.title("Datos entrada")
-ventana.geometry("430x200")
+ventana.geometry("430x275")
 ventana.resizable(False,False)
 ventana.config(background="silver")
+
+
+sexo = ttk.Combobox(ventana, values=["Hombre", "Mujer"], state="readonly")
+sexo.place(x=130, y=210)
+sexo.set("Elige un sexo")
+
 
 #pintar en pantalla
 
@@ -46,6 +52,7 @@ datosContraseña2= ttk.Entry(ventana, show="*")
 botonGuardar= ttk.Button(ventana, text="Guardar", command= guardarDatos)
 botonSalir = ttk.Button(ventana, text="Salir", command= ventana.destroy)
 
+
 #Config pantalla
 
 label_Titulo.grid(row=0, column=0, pady=7)
@@ -62,6 +69,5 @@ datosContraseña2.grid(row=3,column=1, pady=7)
 
 botonGuardar.grid(row=4,column=0, pady=7)
 botonSalir.grid(row=4,column=1, pady=7)
-
 
 ventana.mainloop()
