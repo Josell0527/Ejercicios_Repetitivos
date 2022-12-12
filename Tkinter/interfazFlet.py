@@ -9,12 +9,12 @@ def main(page: ft.Page):
        page.update()
 
     #Crear texto
-    t = ft.Text(value="Introducción a Flet", color= "green", size=30)
+    t = ft.Text(value="Introducción a Flet", color= "purple", size=30)
 
     #Poner en la pantalla el texto
     page.add(t)   #add hace dos cosas: 1-Añadir 2-Actualizar
 
-    t.value="Hola Paco"
+    t.value="TIENDA PACO"
     page.update() #Refrescar la pantalla para poner un nuevo texto
 
     #Componente Botón               Generar icono                        Declarar función
@@ -24,5 +24,12 @@ def main(page: ft.Page):
     textField_Nombre= ft.TextField(label="Nombre", hint_text="Escribe tu nombre")
     textField_Nombre
     page.add(textField_Nombre)
-
+    
+    dropDown_Menu= ft.Dropdown(width=300, options=[ft.dropdown.Option("Tomate")]) #Opción para elegir
+    page.add(dropDown_Menu)
+    dropDown_Menu.options.append(ft.dropdown.Option("Zanahoria"))
+    page.update()
+    
+    slider_edad= ft.Slider(min=0, max=120, divisions=120, label="Edad: {value}") #Barra de edad
+    page.add(slider_edad)
 ft.app(target=main)
