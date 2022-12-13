@@ -13,9 +13,24 @@ def main(page: ft.Page):
         print(compra)
         page.update()
 
+    page.add(
+        ft.Stack(
+            [
+                ft.CircleAvatar(
+                    foreground_image_url="https://www.cdc.gov/foodsafety/images/comms/features/GettyImages-1247930626-500px.jpg?_=00453"
+                ),
+                ft.Container(
+                    content=ft.CircleAvatar(bgcolor=ft.colors.GREEN, radius=5),
+                    alignment=ft.alignment.bottom_left,
+                ),
+            ],
+            width=40,
+            height=40,
+        )
+    )
 
     #Crear texto
-    t = ft.Text(value="Tienda LLavero", color= "Blue", size=30)
+    t = ft.Text(value="Tienda LLavero", color= "orange", size=30)
 
     #Poner en la pantalla el texto
     page.add(t)   #add hace dos cosas: 1-Añadir 2-Actualizar
@@ -27,6 +42,32 @@ def main(page: ft.Page):
     textField_Nombre= ft.TextField(label="Nombre", hint_text="Escribe tu nombre")
     textField_Nombre
     
+    #Componente Boton Compra
+    def close_dlg(e):
+            dlg_modal.open = False
+            page.update()
+
+    dlg_modal = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("Finalizar compra"),
+        content=ft.Text("¿Deseas transmitrar la compra?"),
+        actions=[
+            ft.TextButton("Si", on_click=close_dlg),
+            ft.TextButton("No", on_click=close_dlg),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+        on_dismiss=lambda e: print("Modal dialog dismissed!"),
+    )
+
+    def open_dlg_modal(e):
+        page.dialog = dlg_modal
+        dlg_modal.open = True
+        page.update()
+
+    page.add(
+        ft.ElevatedButton("Finalizar compra", on_click=open_dlg_modal),
+    )
+
     dropDown_Menu= ft.Dropdown(width=300, options=[ft.dropdown.Option("Tomate")]) #Opción para elegir
     dropDown_Menu.options.append(ft.dropdown.Option("Zanahoria"))
     page.update()
@@ -43,5 +84,51 @@ def main(page: ft.Page):
     page.update()
     
     
+ft.app(target=main, view=ft.WEB_BROWSER)
+'''
+from time import sleep PONER BARRA DE CARGA
+
+import flet as ft
+
+def main(page: ft.Page):
+    pb = ft.ProgressBar(width=400)
+
+    page.add(
+        ft.Text("Linear progress indicator", style="headlineSmall"),
+        ft.Column([ ft.Text("Doing something..."), pb]),
+        ft.Text("Indeterminate progress bar", style="headlineSmall"),
+        ft.ProgressBar(width=400, color="amber", bgcolor="#eeeeee"),
+    )
+
+    for i in range(0, 101):
+        pb.value = i * 0.01
+        sleep(0.1)
+        page.update()
 
 ft.app(target=main)
+'''
+
+'''import smtplib, ssl
+import getpass
+
+from email import encoders
+from email.mime.base import MIMEBase
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+usuario = input("Ingrese su nombre de usuario:")
+contraseña = getpasss.getpass("Ingrese su contraseña:")
+
+destinatario = input("Ingrese el destinatario:")
+asunto = input("Ingrese el asunto:")
+
+mensaje= MIMEMultipart("alternativa")
+mensaje["Asunto"] = asunto
+mensaje["Para"] = usuario
+mensaje["De"] = destinatario
+
+html = f"""
+<html>
+<body>
+    Hola {destinatario} <br>'''
+    
