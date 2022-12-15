@@ -12,6 +12,7 @@ def main(page: ft.Page):
             t2.value+= i + "\n"
         print(compra)
         page.update()
+        return compra
 
     page.add(
         ft.Stack(
@@ -38,11 +39,31 @@ def main(page: ft.Page):
     page.update() #Refrescar la pantalla para poner un nuevo texto
 
     #Componente Botón               Generar icono                        Declarar función
-    page.add(ft.FilledButton("Añadir a la cesta", icon="add", on_click= añadirlista))  
+    botoncesta= ft.FilledButton("Añadir a la cesta", icon="add", on_click= añadirlista)  
     textField_Nombre= ft.TextField(label="Nombre", hint_text="Escribe tu nombre")
     textField_Nombre
     
-    #Componente Boton Compra
+        #Boton finalizar
+    def close_banner(e):
+        page.banner.open = False
+        page.update()
+
+    page.banner = ft.Banner(
+        bgcolor=ft.colors.AMBER_100,
+        leading=ft.Icon(color=ft.colors.AMBER, size=40),
+        content=ft.Text(f"{textField_Nombre.value} has seleccionado {compra}"
+        ),
+        actions=[
+            ft.TextButton("Finalizar", on_click=close_banner),
+            ft.TextButton("Continuar comprando", on_click=close_banner),
+        ],
+    )
+    def show_banner_click(e):
+        page.banner.open = True
+        dlg_modal.open = False
+        page.update()
+        
+    #Componente Boton Comprabo
     def close_dlg(e):
             dlg_modal.open = False
             page.update()
@@ -52,7 +73,7 @@ def main(page: ft.Page):
         title=ft.Text("Finalizar compra"),
         content=ft.Text("¿Deseas transmitrar la compra?"),
         actions=[
-            ft.TextButton("Si", on_click=close_dlg),
+            ft.TextButton("Si", on_click=show_banner_click),
             ft.TextButton("No", on_click=close_dlg),
         ],
         actions_alignment=ft.MainAxisAlignment.END,
@@ -64,17 +85,20 @@ def main(page: ft.Page):
         dlg_modal.open = True
         page.update()
 
-    page.add(
-        ft.ElevatedButton("Finalizar compra", on_click=open_dlg_modal),
-    )
+
+    botonfinalizarcompra= ft.ElevatedButton("Finalizar compra", on_click=open_dlg_modal)
 
     dropDown_Menu= ft.Dropdown(width=300, options=[ft.dropdown.Option("Tomate")]) #Opción para elegir
     dropDown_Menu.options.append(ft.dropdown.Option("Zanahoria"))
     page.update()
+
     
             #Crear fila
-    fila= ft.Row(controls=[textField_Nombre, dropDown_Menu])
+    fila= ft.Row(controls=[textField_Nombre, dropDown_Menu, ])
     page.add(fila)
+    
+    fila2= ft.Row(controls=[botoncesta, botonfinalizarcompra])
+    page.add(fila2)
     
     t3 = ft.Text(value="Elementos añadidos:", color= "black", size=20)
     page.add(t3)
