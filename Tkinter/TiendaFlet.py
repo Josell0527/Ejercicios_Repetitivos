@@ -12,7 +12,6 @@ def main(page: ft.Page):
             t2.value+= i + "\n"
         print(compra)
         page.update()
-        return compra
 
     page.add(
         ft.Stack(
@@ -43,27 +42,38 @@ def main(page: ft.Page):
     textField_Nombre= ft.TextField(label="Nombre", hint_text="Escribe tu nombre")
     textField_Nombre
     
+    #Boton añadido correctamente
+
+    def añadido(e):
+        page.banner.open= False
+        page.snack_bar = ft.SnackBar(ft.Text("Compra realizada correctamente"))
+        page.snack_bar.open = True
+        page.update()
+
+
         #Boton finalizar
     def close_banner(e):
         page.banner.open = False
         page.update()
 
+
     page.banner = ft.Banner(
         bgcolor=ft.colors.AMBER_100,
-        leading=ft.Icon(color=ft.colors.AMBER, size=40),
-        content=ft.Text(f"{textField_Nombre.value} has seleccionado {compra}"
+        leading=ft.Icon(ft.icons.ADD_SHOPPING_CART_SHARP, color=ft.colors.AMBER, size=40),
+        content=ft.Text(f"{textField_Nombre} has seleccionado {compra}"
         ),
         actions=[
-            ft.TextButton("Finalizar", on_click=close_banner),
+            ft.TextButton("Finalizar", on_click=añadido),
             ft.TextButton("Continuar comprando", on_click=close_banner),
         ],
     )
     def show_banner_click(e):
         page.banner.open = True
+        page.banner.content= ft.Text(f"{textField_Nombre.value} has seleccionado {compra}")
         dlg_modal.open = False
         page.update()
         
-    #Componente Boton Comprabo
+    #Componente Boton Comprado
     def close_dlg(e):
             dlg_modal.open = False
             page.update()
@@ -90,6 +100,9 @@ def main(page: ft.Page):
 
     dropDown_Menu= ft.Dropdown(width=300, options=[ft.dropdown.Option("Tomate")]) #Opción para elegir
     dropDown_Menu.options.append(ft.dropdown.Option("Zanahoria"))
+    dropDown_Menu.options.append(ft.dropdown.Option("Pimiento verde"))
+    dropDown_Menu.options.append(ft.dropdown.Option("Cebolla"))
+    dropDown_Menu.options.append(ft.dropdown.Option("Alcachofas"))
     page.update()
 
     
@@ -109,50 +122,4 @@ def main(page: ft.Page):
     
     
 ft.app(target=main, view=ft.WEB_BROWSER)
-'''
-from time import sleep PONER BARRA DE CARGA
-
-import flet as ft
-
-def main(page: ft.Page):
-    pb = ft.ProgressBar(width=400)
-
-    page.add(
-        ft.Text("Linear progress indicator", style="headlineSmall"),
-        ft.Column([ ft.Text("Doing something..."), pb]),
-        ft.Text("Indeterminate progress bar", style="headlineSmall"),
-        ft.ProgressBar(width=400, color="amber", bgcolor="#eeeeee"),
-    )
-
-    for i in range(0, 101):
-        pb.value = i * 0.01
-        sleep(0.1)
-        page.update()
-
-ft.app(target=main)
-'''
-
-'''import smtplib, ssl
-import getpass
-
-from email import encoders
-from email.mime.base import MIMEBase
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
-usuario = input("Ingrese su nombre de usuario:")
-contraseña = getpasss.getpass("Ingrese su contraseña:")
-
-destinatario = input("Ingrese el destinatario:")
-asunto = input("Ingrese el asunto:")
-
-mensaje= MIMEMultipart("alternativa")
-mensaje["Asunto"] = asunto
-mensaje["Para"] = usuario
-mensaje["De"] = destinatario
-
-html = f"""
-<html>
-<body>
-    Hola {destinatario} <br>'''
     
