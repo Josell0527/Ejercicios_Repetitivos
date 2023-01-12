@@ -31,10 +31,10 @@ def main(page: ft.Page):
 
     #Crear texto
     t = ft.Text(value="Tienda LLavero", color= "orange", size=30)
-
+    YY =ft.Column(controls=[t], alignment=ft.MainAxisAlignment.CENTER)
     #Poner en la pantalla el texto
-    page.add(t)   #add hace dos cosas: 1-Añadir 2-Actualizar
-    t.value="FRUTERIA"
+    page.add(YY)   #add hace dos cosas: 1-Añadir 2-Actualizar
+    t.value= "FRUTERIA"
     page.update() #Refrescar la pantalla para poner un nuevo texto
 
     #Componente Botón               Generar icono                        Declarar función
@@ -120,6 +120,8 @@ def main(page: ft.Page):
     page.add(t2)
     page.update()
     
+    #imagen
+    page.add(ft.Image(src=f"/imagenes/imagen.png"))
     
-ft.app(target=main, view=ft.WEB_BROWSER)
+ft.app(target=main, view=ft.WEB_BROWSER, assets_dir="imagenes")
     
